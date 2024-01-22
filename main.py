@@ -30,10 +30,8 @@ class Manager(Employee):
             employees = []
         self.employees = employees
 
-    def add_employee(self, *emp):
-        for emp in emp:
-            if emp not in self.employees:
-                self.employees.append(emp)
+    def add_employee(self, *employees):
+        self.employees.extend([emp for emp in employees if emp not in self.employees])
 
     def remove_employee(self, emp):
         if emp in self.employees:
@@ -49,9 +47,8 @@ class Manager(Employee):
 
 
 def main():
-    e = Employee('John', 'Smith', 3000)
-    e.fullname = 'Lane Smith 3000'
-    print(e.fullname)
+    # e = Employee('John', 'Smith', 3000)
+    # e.fullname = 'Lane Smith 3000'
 
     emp1 = Employee('john', 'doe', 15_000)
     emp2 = Employee('Cole', 'Smith', 19_000)
@@ -59,13 +56,9 @@ def main():
 
     manager1 = Manager(firstname='John', lastname='Cooklord', salary=30_000)
     manager2 = Manager(firstname='Peter', lastname='Johnson', salary=40_000, employees=[emp1])
-
     manager2.add_employee(emp2, emp3)
-    # manager.print_employees()
-    # print()
-    manager1.print_employees()
-    print()
-    manager2.print_employees()
+
+    [m.print_employees() for m in [manager1, manager2]]
 
 
 if __name__ == '__main__':
