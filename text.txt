@@ -1,0 +1,5 @@
+git status
+git add .gitignore
+git commit -m "update ignored files"
+
+/text.txt
